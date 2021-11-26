@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import { ethers } from "ethers";
 import myEpicNft from "./utils/MyEpicNFT.json";
+import { Switch, Route } from "react-router-dom";
 
 const OPENSEA_LINK =
   "https://testnets.opensea.io/collection/squarenft-m9kt2kehck";
-
 
 const CONTRACT_ADDRESS = "0x6dF721755414235268b8F7C7Dbb2eD49742E96e8";
 
@@ -159,28 +159,41 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
-      <div className="container">
-        <div className="header-container">
-          <p className="header gradient-text">Le Card Game</p>
-          <p className="sub-text">Best Cardgame Ever. Dot</p>
-          {currentAccount === "" ? (
-            renderNotConnectedContainer()
-          ) : (
-            <button
-              onClick={askContractToMintNft}
-              className="cta-button connect-wallet-button"
-            >
-              Create Card
-            </button>
-          )}
-          <button onClick={OPENSEA_LINK} className="cta-button opensea-button ">
-            Card Album
-          </button>
+    <Switch>
+      <Route path="/collection">
+        {/* <Header />
+        <Sidebar />
+        <Album />
+        <Footer /> */}
+      </Route>
+      <Route path="/">
+        <div className="App">
+          <div className="container">
+            <div className="header-container">
+              <p className="header gradient-text">Le Card Game</p>
+              <p className="sub-text">Best Cardgame Ever. Dot</p>
+              {currentAccount === "" ? (
+                renderNotConnectedContainer()
+              ) : (
+                <button
+                  onClick={askContractToMintNft}
+                  className="cta-button connect-wallet-button"
+                >
+                  Create Card
+                </button>
+              )}
+              <button
+                onClick={() => window.location.assign(OPENSEA_LINK)}
+                className="cta-button opensea-button"
+              >
+                Card Album
+              </button>
+            </div>
+            <div className="footer-container"></div>
+          </div>
         </div>
-        <div className="footer-container"></div>
-      </div>
-    </div>
+      </Route>
+    </Switch>
   );
 };
 
