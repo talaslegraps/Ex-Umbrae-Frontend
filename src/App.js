@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import { ethers } from "ethers";
 import myEpicNft from "./utils/MyEpicNFT.json";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import logo from "./media/logo.png";
 import Header from "./components/Header";
 
@@ -205,18 +205,25 @@ const App = () => {
                 {currentAccount === "" ? (
                   renderNotConnectedContainer()
                 ) : (
-                  <button
-                    onClick={askContractToMintNft}
-                    className="cta-button connect-wallet-button"
-                  >
-                    MINT CARD!
-                  </button>
+                  <>
+                    <button
+                      onClick={askContractToMintNft}
+                      className="cta-button connect-wallet-button"
+                    >
+                      Mint Card
+                    </button>
+                    <Link to="/collection">
+                      <button className="cta-button opensea-button">
+                        My Collection
+                      </button>
+                    </Link>
+                  </>
                 )}
                 <button
                   onClick={() => window.location.assign(OPENSEA_LINK)}
                   className="cta-button opensea-button"
                 >
-                  Watch Collection on OpenSea!
+                  Watch Collection on OpenSea
                 </button>
               </div>
             </div>
