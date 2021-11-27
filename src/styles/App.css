@@ -20,7 +20,9 @@
   justify-content: center;
 }
 
-.header-container {
+.header-container img {
+  height: 400px;
+  width: auto;
 }
 
 .button-container {
@@ -31,13 +33,16 @@
 
 .landing-header-text {
   margin: 0;
-  font-size: 50px;
+  font-family: "Kings", cursive;
+  font-size: 70px;
   font-weight: bold;
   color: var(--accent-color);
 }
 
 .sub-text {
-  font-size: 25px;
+  margin-top: 0;
+  margin-bottom: 50px;
+  font-size: 20px;
   color: var(--alternative-accent-color);
 }
 
@@ -90,18 +95,21 @@
 
 .logo-header {
   display: flex;
+  height: 100px;
 }
 
 .logo-header img {
-  width: 20%;
-  height: auto;
+  height: 100px;
+  width: auto;
+  align-self: center;
 }
 
 .logo-header h2 {
   color: var(--accent-color);
   align-self: center;
-  padding-left: 20px;
-  font-size: 50px;
+  margin-left: 20px;
+  font-family: "Kings", cursive;
+  font-size: 70px;
 }
 
 /* KeyFrames */

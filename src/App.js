@@ -15,6 +15,35 @@ const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [totalMintCount, setTotalMintCount] = useState(0);
 
+  const mockData = [
+    {
+      name: "Hairy Potter",
+      description:
+        "One very hairy Wizard. He is been trying to learn the shave spell.",
+      image:
+        "https://ipfs.io/ipfs/QmPPGBtLCRthfNAAcdGMYJDqp8CxerkAs9WHsRJi8S1Ca8",
+      HP: 50,
+      POW: 50,
+    },
+    {
+      name: "Professor Pengu",
+      description: "Don't let his looks fool you. He is evil incarnate.",
+      image:
+        "https://ipfs.io/ipfs/QmccH44nTDVd5oqqsdVDeXv6smuL7wBz6Xj4mZm2samKZL",
+      HP: 70,
+      POW: 30,
+    },
+    {
+      name: "La Wizardina",
+      description:
+        "She doesn't even know she's a real wizard. She just likeds to wear robes.",
+      image:
+        "https://ipfs.io/ipfs/QmY25boj1cSjSA1s6oLA88u2pwPU7WTH7gWwWazm1L9KF6",
+      HP: 30,
+      POW: 70,
+    },
+  ];
+
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
 
@@ -171,7 +200,7 @@ const App = () => {
             <div className="header-container">
               <img src={logo} />
               <p className="landing-header-text">Le Card Game</p>
-              <p className="sub-text">Best Cardgame Ever. Dot</p>
+              <p className="sub-text">NFT Trading Card Game</p>
               <div className="button-container">
                 {currentAccount === "" ? (
                   renderNotConnectedContainer()
@@ -180,7 +209,7 @@ const App = () => {
                     onClick={askContractToMintNft}
                     className="cta-button connect-wallet-button"
                   >
-                    Create Card
+                    MINT CARD!
                   </button>
                 )}
                 <button
