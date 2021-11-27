@@ -3,6 +3,8 @@ import "./styles/App.css";
 import { ethers } from "ethers";
 import myEpicNft from "./utils/MyEpicNFT.json";
 import { Switch, Route } from "react-router-dom";
+import logo from "./media/logo.png";
+import Header from "./components/Header";
 
 const OPENSEA_LINK =
   "https://testnets.opensea.io/collection/squarenft-m9kt2kehck";
@@ -161,33 +163,33 @@ const App = () => {
   return (
     <Switch>
       <Route path="/collection">
-        {/* <Header />
-        <Sidebar />
-        <Album />
-        <Footer /> */}
+        <Header />
       </Route>
       <Route path="/">
         <div className="App">
           <div className="container">
             <div className="header-container">
-              <p className="header gradient-text">Le Card Game</p>
+              <img src={logo} />
+              <p className="landing-header-text">Le Card Game</p>
               <p className="sub-text">Best Cardgame Ever. Dot</p>
-              {currentAccount === "" ? (
-                renderNotConnectedContainer()
-              ) : (
+              <div className="button-container">
+                {currentAccount === "" ? (
+                  renderNotConnectedContainer()
+                ) : (
+                  <button
+                    onClick={askContractToMintNft}
+                    className="cta-button connect-wallet-button"
+                  >
+                    Create Card
+                  </button>
+                )}
                 <button
-                  onClick={askContractToMintNft}
-                  className="cta-button connect-wallet-button"
+                  onClick={() => window.location.assign(OPENSEA_LINK)}
+                  className="cta-button opensea-button"
                 >
-                  Create Card
+                  Watch Collection on OpenSea!
                 </button>
-              )}
-              <button
-                onClick={() => window.location.assign(OPENSEA_LINK)}
-                className="cta-button opensea-button"
-              >
-                Card Album
-              </button>
+              </div>
             </div>
             <div className="footer-container"></div>
           </div>

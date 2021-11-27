@@ -1,71 +1,67 @@
+:root {
+  --main-bg-color: #131019;
+  --secondary-color: #452f6b;
+  --accent-color: #d9ac18;
+  --alternative-accent-color: #ffffff;
+  background-color: var(--main-bg-color);
+}
+
 .App {
   height: 100vh;
-  background-color: #0d1116;
   overflow: scroll;
   text-align: center;
 }
 
 .container {
   height: 100%;
-  background-color: #0d1116;
+  background-color: var(--main-bg-color);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .header-container {
-  padding-top: 30px;
 }
 
-.header {
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.landing-header-text {
   margin: 0;
   font-size: 50px;
   font-weight: bold;
+  color: var(--accent-color);
 }
 
 .sub-text {
   font-size: 25px;
-  color: white;
-}
-
-.gradient-text {
-  background: -webkit-linear-gradient(left,red,pink,blue 60%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--alternative-accent-color);
 }
 
 .cta-button {
   height: 45px;
   border: 0;
-  width: auto;
-  padding-left: 40px;
-  padding-right: 40px;
+  width: 30%;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
-  color: white;
-}
-
-.connect-wallet-button {
-  background: -webkit-linear-gradient(left,red,pink,blue);
+  color: var(--accent-color);
+  border: solid var(--alternative-accent-color) 2px;
+  align-self: center;
+  margin-bottom: 10px;
+  /* background: -webkit-linear-gradient(
+    left,
+    var(--accent-color),
+    rgb(167, 0, 167),
+    var(--secondary-color)
+  );
   background-size: 200% 200%;
-  animation: gradient-animation 4s ease infinite;
-}
-
-.mint-button {
-  background: -webkit-linear-gradient(left,red,pink,blue);
-  background-size: 200% 200%;
-  animation: gradient-animation 4s ease infinite;
-  margin-right: 15px;
-}
-
-.opensea-button {
-  background: -webkit-linear-gradient(right,pink,blue);
-  background-size: 200% 200%;
-  animation: gradient-animation 4s ease infinite;
-  margin-right: 15px;
+  animation: gradient-animation 4s ease infinite; */
+  background-color: var(--secondary-color);
 }
 
 .mint-count {
@@ -90,6 +86,22 @@
   color: white;
   font-size: 16px;
   font-weight: bold;
+}
+
+.logo-header {
+  display: flex;
+}
+
+.logo-header img {
+  width: 20%;
+  height: auto;
+}
+
+.logo-header h2 {
+  color: var(--accent-color);
+  align-self: center;
+  padding-left: 20px;
+  font-size: 50px;
 }
 
 /* KeyFrames */
