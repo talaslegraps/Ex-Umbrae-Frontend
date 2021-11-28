@@ -5,6 +5,8 @@ import myEpicNft from "./utils/MyEpicNFT.json";
 import { Switch, Route, Link } from "react-router-dom";
 import logo from "./media/logo.png";
 import Header from "./components/Header";
+import CardDetails from "./components/CardDetails";
+import MetadataContext from "./context/MetadataContext";
 
 const OPENSEA_LINK =
   "https://testnets.opensea.io/collection/squarenft-m9kt2kehck";
@@ -15,7 +17,7 @@ const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [totalMintCount, setTotalMintCount] = useState(0);
 
-  const mockData = [
+  const [metadata, setMetadata] = useState([
     {
       name: "Hairy Potter",
       description:
@@ -42,7 +44,7 @@ const App = () => {
       HP: 30,
       POW: 70,
     },
-  ];
+  ]);
 
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
@@ -190,48 +192,50 @@ const App = () => {
   }, []);
 
   return (
-    <Switch>
-      <Route path="/collection">
-        <Header />
-      </Route>
-      <Route path="/">
-        <div className="App">
-          <div className="container">
-            <div className="header-container">
-              <img src={logo} />
-              <p className="landing-header-text">Le Card Game</p>
-              <p className="sub-text">NFT Trading Card Game</p>
-              <div className="button-container">
-                {currentAccount === "" ? (
-                  renderNotConnectedContainer()
-                ) : (
-                  <>
-                    <button
-                      onClick={askContractToMintNft}
-                      className="cta-button connect-wallet-button"
-                    >
-                      Mint Card
-                    </button>
-                    <Link to="/collection">
-                      <button className="cta-button opensea-button">
-                        My Collection
+    <MetadataContext.Provider value={{ metadata }}>
+      <Switch>
+        <Route path="/collection">
+          <Header />
+        </Route>
+        <Route path="/">
+          <div className="App">
+            <div className="container">
+              <div className="header-container">
+                <img src={logo} />
+                <p className="landing-header-text">Le Card Game</p>
+                <p className="sub-text">NFT Trading Card Game</p>
+                <div className="button-container">
+                  {currentAccount === "" ? (
+                    renderNotConnectedContainer()
+                  ) : (
+                    <>
+                      <button
+                        onClick={askContractToMintNft}
+                        className="cta-button connect-wallet-button"
+                      >
+                        Mint Card
                       </button>
-                    </Link>
-                  </>
-                )}
-                <button
-                  onClick={() => window.location.assign(OPENSEA_LINK)}
-                  className="cta-button opensea-button"
-                >
-                  Watch Collection on OpenSea
-                </button>
+                      <Link to="/collection">
+                        <button className="cta-button opensea-button">
+                          My Collection
+                        </button>
+                      </Link>
+                    </>
+                  )}
+                  <button
+                    onClick={() => window.location.assign(OPENSEA_LINK)}
+                    className="cta-button opensea-button"
+                  >
+                    Watch Collection on OpenSea
+                  </button>
+                </div>
               </div>
+              <div className="footer-container"></div>
             </div>
-            <div className="footer-container"></div>
           </div>
-        </div>
-      </Route>
-    </Switch>
+        </Route>
+      </Switch>
+    </MetadataContext.Provider>
   );
 };
 
