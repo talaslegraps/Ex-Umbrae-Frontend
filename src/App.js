@@ -19,15 +19,17 @@ const App = () => {
 
   const [metadata, setMetadata] = useState([
     {
+      id: 1,
       name: "Hairy Potter",
       description:
-        "One very hairy Wizard. He is been trying to learn the shave spell.",
+        "One very hairy Wizard. He has been trying to learn the shave spell for years now.",
       image:
         "https://ipfs.io/ipfs/QmPPGBtLCRthfNAAcdGMYJDqp8CxerkAs9WHsRJi8S1Ca8",
       HP: 50,
       POW: 50,
     },
     {
+      id: 2,
       name: "Professor Pengu",
       description: "Don't let his looks fool you. He is evil incarnate.",
       image:
@@ -36,9 +38,10 @@ const App = () => {
       POW: 30,
     },
     {
+      id: 3,
       name: "La Wizardina",
       description:
-        "She doesn't even know she's a real wizard. She just likeds to wear robes.",
+        "She doesn't even know she's a real wizard. She just likes to wear robes.",
       image:
         "https://ipfs.io/ipfs/QmY25boj1cSjSA1s6oLA88u2pwPU7WTH7gWwWazm1L9KF6",
       HP: 30,
@@ -194,6 +197,10 @@ const App = () => {
   return (
     <MetadataContext.Provider value={{ metadata }}>
       <Switch>
+        <Route path="/collection/:id">
+          <Header />
+          <CardDetails />
+        </Route>
         <Route path="/collection">
           <Header />
         </Route>
