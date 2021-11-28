@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import { ethers } from "ethers";
 import myEpicNft from "./utils/MyEpicNFT.json";
-import { Switch, Route, Link } from "react-router-dom";
+import { Router, Switch, Route, Link } from "react-router-dom";
 import logo from "./media/logo.png";
 import Header from "./components/Header";
 import CardDetails from "./components/CardDetails";
 import MetadataContext from "./context/MetadataContext";
+import Navbar from "./components/Navbar";
 
 const OPENSEA_LINK =
   "https://testnets.opensea.io/collection/squarenft-m9kt2kehck";
@@ -196,13 +197,16 @@ const App = () => {
 
   return (
     <MetadataContext.Provider value={{ metadata }}>
+      {/* <Navbar /> */}
       <Switch>
         <Route path="/collection/:id">
           <Header />
           <CardDetails />
+          <Navbar />
         </Route>
         <Route path="/collection">
           <Header />
+          <Navbar />
         </Route>
         <Route path="/">
           <div className="App">
