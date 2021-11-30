@@ -1,9 +1,9 @@
 import logo from "../media/logo.png";
 
-const Header = () => {
+const Header = ({onShowSidebar}) => {
   return (
     <div className="logo-header">
-      <img src={logo} />
+      <img src={logo} onClick={onShowSidebar} />
       <h2 className="header-text">Le Card Game</h2>
     </div>
   );

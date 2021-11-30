@@ -1,0 +1,13 @@
+.single-album-card {
+  padding: 10px;
+  margin: 10px;
+}
+
+.nft-cards-container {
+  background-color: var(--main-bg-color);
+  min-height: 100vh;
+}
+
+.album-front-title {
+  margin-top: 10px;
+}

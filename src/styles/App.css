@@ -3,7 +3,11 @@
   --secondary-color: #452f6b;
   --accent-color: #d9ac18;
   --alternative-accent-color: #ffffff;
+}
+
+body {
   background-color: var(--main-bg-color);
+  min-height: 100vh;
 }
 
 .App {
@@ -93,11 +97,15 @@
 }
 
 .logo-header {
+  background-color: var(--main-bg-color);
+  padding-left: 1rem;
+  padding-top: 1rem;
   display: flex;
   height: 100px;
 }
 
 .logo-header img {
+  cursor: pointer;
   height: 100px;
   width: auto;
   align-self: center;
@@ -105,6 +113,7 @@
 
 .logo-header h2 {
   color: var(--accent-color);
+  padding-top: 1rem;
   align-self: center;
   margin-left: 20px;
   font-family: "Kings", cursive;
@@ -116,8 +125,10 @@
 }
 
 .card-details {
+  padding-top: 2rem;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .single-card {
@@ -170,4 +181,3 @@
   padding: 0;
   font-family: "Segoe UI", sans-serif;
 }
-

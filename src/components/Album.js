@@ -1,0 +1,38 @@
+import { useParams } from "react-router-dom";
+import MetadataContext from "../context/MetadataContext";
+import { useContext } from "react";
+// import CardDetails from "./components/CardDetails";
+import NFTCard from "./NFTCard";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from 'react-bootstrap/Col'
+import "../styles/components/Album.css";
+
+const Album = () => {
+  const { metadata } = useContext(MetadataContext);
+  const { id } = useParams();
+
+  if (!metadata) return null;
+
+  return (
+    <Container fluid className="nft-cards-container">
+      <Row>
+        {/* <div className="album-card"> */}
+          {metadata
+            .filter((object) => {
+              if (id) {
+                return object.id === Number(id);
+              } else {
+                return object;
+              }
+            })
+            .map((albumCard) => {
+              return <Col key={albumCard.id}><NFTCard albumCard={albumCard} unique={id} /></Col>;
+            })}
+        {/* </div> */}
+      </Row>
+    </Container>
+  );
+};
+
+export default Album;

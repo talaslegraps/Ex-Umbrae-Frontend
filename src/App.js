@@ -5,9 +5,10 @@ import myEpicNft from "./utils/MyEpicNFT.json";
 import { Router, Switch, Route, Link } from "react-router-dom";
 import logo from "./media/logo.png";
 import Header from "./components/Header";
-import CardDetails from "./components/CardDetails";
+// import CardDetails from "./components/CardDetails";
 import MetadataContext from "./context/MetadataContext";
 import Navbar from "./components/Navbar";
+import Album from "./components/Album.js";
 
 const OPENSEA_LINK =
   "https://testnets.opensea.io/collection/squarenft-m9kt2kehck";
@@ -195,18 +196,23 @@ const App = () => {
     getTotalNFTsMinted();
   }, []);
 
+  const [sidebar, setSidebar] = useState(false);
+
+  const showSidebar = () => setSidebar(!sidebar);
+
   return (
     <MetadataContext.Provider value={{ metadata }}>
       {/* <Navbar /> */}
       <Switch>
-        <Route path="/collection/:id">
+        {/* <Route path="/collection/:id">
           <Header />
+          <Navbar />
           <CardDetails />
-          <Navbar />
-        </Route>
-        <Route path="/collection">
-          <Header />
-          <Navbar />
+        </Route> */}
+        <Route path="/collection/:id?">
+          <Header onShowSidebar={showSidebar} />
+          <Navbar sidebar={sidebar} onShowSidebar={showSidebar} />
+          <Album />
         </Route>
         <Route path="/">
           <div className="App">
