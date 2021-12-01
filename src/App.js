@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import { ethers } from "ethers";
 import myEpicNft from "./utils/MyEpicNFT.json";
-import { Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import logo from "./media/logo.png";
 import Header from "./components/Header";
 // import CardDetails from "./components/CardDetails";
@@ -10,46 +10,15 @@ import MetadataContext from "./context/MetadataContext";
 import Navbar from "./components/Navbar";
 import Album from "./components/Album.js";
 
-const OPENSEA_LINK =
-  "https://testnets.opensea.io/collection/squarenft-m9kt2kehck";
+const OPENSEA_LINK = "https://testnets.opensea.io/collection/sorcerers-v3";
 
-const CONTRACT_ADDRESS = "0x6dF721755414235268b8F7C7Dbb2eD49742E96e8";
+const CONTRACT_ADDRESS = "0x6F6eA850e7ba15BDa6AcBa264eBe038721D429cA";
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
-  const [totalMintCount, setTotalMintCount] = useState(0);
 
-  const [metadata, setMetadata] = useState([
-    {
-      id: 1,
-      name: "Hairy Potter",
-      description:
-        "One very hairy Wizard. He has been trying to learn the shave spell for years now.",
-      image:
-        "https://ipfs.io/ipfs/QmPPGBtLCRthfNAAcdGMYJDqp8CxerkAs9WHsRJi8S1Ca8",
-      HP: 50,
-      POW: 50,
-    },
-    {
-      id: 2,
-      name: "Professor Pengu",
-      description: "Don't let his looks fool you. He is evil incarnate.",
-      image:
-        "https://ipfs.io/ipfs/QmccH44nTDVd5oqqsdVDeXv6smuL7wBz6Xj4mZm2samKZL",
-      HP: 70,
-      POW: 30,
-    },
-    {
-      id: 3,
-      name: "La Wizardina",
-      description:
-        "She doesn't even know she's a real wizard. She just likes to wear robes.",
-      image:
-        "https://ipfs.io/ipfs/QmY25boj1cSjSA1s6oLA88u2pwPU7WTH7gWwWazm1L9KF6",
-      HP: 30,
-      POW: 70,
-    },
-  ]);
+  const [openSeaAPI, setOpenSeaAPI] = useState("");
+  const [userNftCollection, setUserNftCollection] = useState([]);
 
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
@@ -67,7 +36,9 @@ const App = () => {
       const account = accounts[0];
       console.log("Found an authorized account:", account);
       setCurrentAccount(account);
-
+      setOpenSeaAPI(
+        `https://rinkeby-api.opensea.io/api/v1/assets?owner=${account}&asset_contract_address=${CONTRACT_ADDRESS}&order_direction=desc&offset=0&limit=50`
+      );
       setupEventListener();
     } else {
       console.log("No authorized account found");
@@ -124,7 +95,7 @@ const App = () => {
     }
   };
 
-  const askContractToMintNft = async () => {
+  const askContractToMintWizard = async () => {
     try {
       const { ethereum } = window;
 
@@ -139,13 +110,11 @@ const App = () => {
         );
 
         console.log("Going to pop wallet now to pay gas...");
-        let nftTxn = await connectedContract.makeAnEpicNFT();
+        let nftTxn = await connectedContract.makeWizardNFT();
 
         console.log("Mining...please wait.");
         await nftTxn.wait();
 
-        let totalMinted = await connectedContract.getTotalNFTsMinted();
-        setTotalMintCount(totalMinted);
         console.log(
           `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
         );
@@ -157,13 +126,14 @@ const App = () => {
     }
   };
 
-  const getTotalNFTsMinted = async () => {
+  const askContractToMintWarlock = async () => {
     try {
       const { ethereum } = window;
 
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
+
         const connectedContract = new ethers.Contract(
           CONTRACT_ADDRESS,
           myEpicNft.abi,
@@ -171,11 +141,47 @@ const App = () => {
         );
 
         console.log("Going to pop wallet now to pay gas...");
-        let totalMinted = await connectedContract.getTotalNFTsMinted();
-        setTotalMintCount(totalMinted);
-        console.log(`Total NFTs Minted: ${totalMinted}`);
+        let nftTxn = await connectedContract.makeWarlockNFT();
+
+        console.log("Mining...please wait.");
+        await nftTxn.wait();
+
+        console.log(
+          `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
+        );
       } else {
-        console.log("Ethereum object doesn't exist!");
+        console.log("Ethereum object does not exist!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const askContractToMintNecromancer = async () => {
+    try {
+      const { ethereum } = window;
+
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+
+        const connectedContract = new ethers.Contract(
+          CONTRACT_ADDRESS,
+          myEpicNft.abi,
+          signer
+        );
+
+        console.log("Going to pop wallet now to pay gas...");
+        let nftTxn = await connectedContract.makeNecromancerNFT();
+
+        console.log("Mining...please wait.");
+        await nftTxn.wait();
+
+        console.log(
+          `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
+        );
+      } else {
+        console.log("Ethereum object does not exist!");
       }
     } catch (error) {
       console.log(error);
@@ -193,22 +199,22 @@ const App = () => {
 
   useEffect(() => {
     checkIfWalletIsConnected();
-    getTotalNFTsMinted();
   }, []);
+
+  useEffect(() => {
+    fetch(openSeaAPI, { method: "GET" })
+      .then((response) => response.json())
+      .then((data) => setUserNftCollection(data))
+      .catch((err) => console.error(err));
+  }, [openSeaAPI]);
 
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
-    <MetadataContext.Provider value={{ metadata }}>
-      {/* <Navbar /> */}
+    <MetadataContext.Provider value={{ userNftCollection }}>
       <Switch>
-        {/* <Route path="/collection/:id">
-          <Header />
-          <Navbar />
-          <CardDetails />
-        </Route> */}
         <Route path="/collection/:id?">
           <Header onShowSidebar={showSidebar} />
           <Navbar sidebar={sidebar} onShowSidebar={showSidebar} />
@@ -218,7 +224,7 @@ const App = () => {
           <div className="App">
             <div className="container">
               <div className="header-container">
-                <img src={logo} />
+                <img src={logo} alt="logo" />
                 <p className="landing-header-text">Le Card Game</p>
                 <p className="sub-text">NFT Trading Card Game</p>
                 <div className="button-container">
@@ -227,10 +233,22 @@ const App = () => {
                   ) : (
                     <>
                       <button
-                        onClick={askContractToMintNft}
+                        onClick={askContractToMintWizard}
                         className="cta-button connect-wallet-button"
                       >
-                        Mint Card
+                        Mint Wizard
+                      </button>
+                      <button
+                        onClick={askContractToMintWarlock}
+                        className="cta-button connect-wallet-button"
+                      >
+                        Mint Warlock
+                      </button>
+                      <button
+                        onClick={askContractToMintNecromancer}
+                        className="cta-button connect-wallet-button"
+                      >
+                        Mint Necromancer
                       </button>
                       <Link to="/collection">
                         <button className="cta-button opensea-button">

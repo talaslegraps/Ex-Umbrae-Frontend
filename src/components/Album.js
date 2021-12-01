@@ -5,31 +5,34 @@ import { useContext } from "react";
 import NFTCard from "./NFTCard";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from 'react-bootstrap/Col'
+import Col from "react-bootstrap/Col";
 import "../styles/components/Album.css";
 
 const Album = () => {
-  const { metadata } = useContext(MetadataContext);
+  const { userNftCollection } = useContext(MetadataContext);
   const { id } = useParams();
 
-  if (!metadata) return null;
+  // if (!userNftCollection) return null;
 
   return (
     <Container fluid className="nft-cards-container">
       <Row>
-        {/* <div className="album-card"> */}
-          {metadata
+        {userNftCollection.assets &&
+          userNftCollection.assets
             .filter((object) => {
               if (id) {
-                return object.id === Number(id);
+                return object.token_id === Number(id);
               } else {
                 return object;
               }
             })
             .map((albumCard) => {
-              return <Col key={albumCard.id}><NFTCard albumCard={albumCard} unique={id} /></Col>;
+              return (
+                <Col key={albumCard.token_id}>
+                  <NFTCard albumCard={albumCard} unique={id} />
+                </Col>
+              );
             })}
-        {/* </div> */}
       </Row>
     </Container>
   );
