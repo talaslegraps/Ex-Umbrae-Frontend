@@ -16,9 +16,10 @@ const CONTRACT_ADDRESS = "0x6F6eA850e7ba15BDa6AcBa264eBe038721D429cA";
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
-
   const [openSeaAPI, setOpenSeaAPI] = useState("");
   const [userNftCollection, setUserNftCollection] = useState([]);
+  const [sidebar, setSidebar] = useState(false);
+  const showSidebar = () => setSidebar(!sidebar);
 
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
@@ -39,7 +40,7 @@ const App = () => {
       setOpenSeaAPI(
         `https://rinkeby-api.opensea.io/api/v1/assets?owner=${account}&asset_contract_address=${CONTRACT_ADDRESS}&order_direction=desc&offset=0&limit=50`
       );
-      setupEventListener();
+      setupEventListener(account);
     } else {
       console.log("No authorized account found");
     }
@@ -60,7 +61,7 @@ const App = () => {
 
       console.log("Connected", accounts[0]);
       setCurrentAccount(accounts[0]);
-      setupEventListener();
+      setupEventListener(accounts[0]);
       setOpenSeaAPI(
         `https://rinkeby-api.opensea.io/api/v1/assets?owner=${accounts[0]}&asset_contract_address=${CONTRACT_ADDRESS}&order_direction=desc&offset=0&limit=50`
       );
@@ -74,7 +75,7 @@ const App = () => {
     }
   };
 
-  const setupEventListener = async () => {
+  const setupEventListener = async (account) => {
     try {
       const { ethereum } = window;
       if (ethereum) {
@@ -88,7 +89,7 @@ const App = () => {
 
         connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
           console.log(from, tokenId.toNumber());
-          if (from === currentAccount) {
+          if (from.toLowerCase() === account) {
             return window.alert(
               `Hey there! We've created your Card and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`
             );
@@ -219,10 +220,6 @@ const App = () => {
       .then((data) => setUserNftCollection(data))
       .catch((err) => console.error(err));
   }, [openSeaAPI]);
-
-  const [sidebar, setSidebar] = useState(false);
-
-  const showSidebar = () => setSidebar(!sidebar);
 
   return (
     <MetadataContext.Provider value={{ userNftCollection }}>
