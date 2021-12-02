@@ -13,6 +13,7 @@ const Album = () => {
   const { id } = useParams();
 
   // if (!userNftCollection) return null;
+  console.log(userNftCollection);
 
   return (
     <Container fluid className="nft-cards-container">

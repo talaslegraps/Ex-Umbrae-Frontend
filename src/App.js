@@ -60,8 +60,15 @@ const App = () => {
 
       console.log("Connected", accounts[0]);
       setCurrentAccount(accounts[0]);
-
       setupEventListener();
+      setOpenSeaAPI(
+        `https://rinkeby-api.opensea.io/api/v1/assets?owner=${accounts[0]}&asset_contract_address=${CONTRACT_ADDRESS}&order_direction=desc&offset=0&limit=50`
+      );
+
+      fetch(openSeaAPI, { method: "GET" })
+        .then((response) => response.json())
+        .then((data) => setUserNftCollection(data))
+        .catch((err) => console.error(err));
     } catch (error) {
       console.log(error);
     }
@@ -123,6 +130,7 @@ const App = () => {
       }
     } catch (error) {
       console.log(error);
+      window.alert(error);
     }
   };
 
@@ -154,6 +162,7 @@ const App = () => {
       }
     } catch (error) {
       console.log(error);
+      window.alert(error);
     }
   };
 
@@ -185,6 +194,7 @@ const App = () => {
       }
     } catch (error) {
       console.log(error);
+      window.alert(error);
     }
   };
 
