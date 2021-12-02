@@ -21,7 +21,7 @@ const Album = () => {
           userNftCollection.assets
             .filter((object) => {
               if (id) {
-                return object.token_id === Number(id);
+                return object.token_id === id;
               } else {
                 return object;
               }

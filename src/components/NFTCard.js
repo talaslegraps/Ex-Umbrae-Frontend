@@ -1,4 +1,5 @@
 import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const NFTCard = ({ albumCard: { token_metadata, token_id }, unique }) => {
@@ -16,32 +17,41 @@ const NFTCard = ({ albumCard: { token_metadata, token_id }, unique }) => {
 
   return (
     <>
-      {metadata && unique &&
+      {metadata && unique && (
         <div className="card-details">
-        <Card className="single-card card-front" style={{ width: "18rem" }}>
-          <Card.Img variant="top" src={metadata.image} />
-          <Card.Body>
-            <Card.Title className="front-title">{metadata.name}</Card.Title>
-          </Card.Body>
-        </Card>
-        <Card className="single-card card-back" style={{ width: "18rem" }}>
-          <Card.Body>
-            <Card.Title>{metadata.name}</Card.Title>
-            <Card.Text>{metadata.description}</Card.Text>
-            <Card.Text>HP: {metadata.HP}</Card.Text>
-            <Card.Text>Power: {metadata.POW}</Card.Text>
-            <Card.Text>Card ID: {token_id}</Card.Text>
-          </Card.Body>
-        </Card>
-      </div>}
+          <Card className="single-card card-front" style={{ width: "18rem" }}>
+            <Card.Img variant="top" src={metadata.image} />
+            <Card.Body>
+              <Card.Title className="front-title">{metadata.name}</Card.Title>
+            </Card.Body>
+          </Card>
+          <Card className="single-card card-back" style={{ width: "18rem" }}>
+            <Card.Body>
+              <Card.Title>{metadata.name}</Card.Title>
+              <Card.Text>{metadata.description}</Card.Text>
+              <Card.Text>HP: {metadata.HP}</Card.Text>
+              <Card.Text>Power: {metadata.POW}</Card.Text>
+              <Card.Text>Card ID: {token_id}</Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
+      )}
 
-      {metadata && !unique &&
-        <Card className="single-album-card card-front" style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={metadata.image} />
-        <Card.Body>
-          <Card.Title className="album-front-title">{metadata.name}</Card.Title>
-        </Card.Body>
-      </Card>}
+      {metadata && !unique && (
+        <Card
+          className="single-album-card card-front"
+          style={{ width: "18rem" }}
+        >
+          <Link to={`/collection/${token_id}`}>
+            <Card.Img variant="top" src={metadata.image} />
+          </Link>
+          <Card.Body>
+            <Card.Title className="album-front-title">
+              {metadata.name}
+            </Card.Title>
+          </Card.Body>
+        </Card>
+      )}
     </>
   );
 };
