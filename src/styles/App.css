@@ -150,11 +150,6 @@ body {
   margin-top: 10px;
 }
 
-.deck-container {
-  padding-top: 0;
-  margin-top: 50px;
-}
-
 .slider-container {
   display: flex;
   justify-content: center;

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useSprings, animated, interpolate } from "react-spring";
+import { Link } from "react-router-dom";
 import { useGesture } from "react-use-gesture";
 import MetadataContext from "../context/MetadataContext";
 import "../styles/components/Deck.css";
@@ -81,6 +82,7 @@ function Deck() {
       className="deck-container"
     >
       {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}
+      {/* <Link to={`/collection/${userNftCollection.assets[i].token_id}`}> */}
       <animated.div
         {...bind(i)}
         style={{
@@ -89,6 +91,7 @@ function Deck() {
         }}
         className="deck-card"
       />
+      {/* </Link> */}
     </animated.div>
   ));
 }
