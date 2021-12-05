@@ -10,9 +10,9 @@ import MetadataContext from "./context/MetadataContext";
 import Navbar from "./components/Navbar";
 import Album from "./components/Album.js";
 
-const OPENSEA_LINK = "https://testnets.opensea.io/collection/sorcerers-v3";
+const OPENSEA_LINK = "https://testnets.opensea.io/collection/exumbrae";
 
-const CONTRACT_ADDRESS = "0x6F6eA850e7ba15BDa6AcBa264eBe038721D429cA";
+const CONTRACT_ADDRESS = "0x8B4172145AAC5cDBbeadec85cfdD21FB3EC770F0";
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
