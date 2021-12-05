@@ -16,16 +16,16 @@ body {
   overflow: hidden;
 } */
 
-#root {
+/* #root {
   background: var(--main-bg-color);
   position: fixed;
   overflow: hidden;
   width: 100%;
   height: 100%;
-}
+} */
 
 .deck-container {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 60vh;
   will-change: transform;
