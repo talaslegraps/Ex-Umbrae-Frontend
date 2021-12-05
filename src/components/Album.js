@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import MetadataContext from "../context/MetadataContext";
 import { useState, useContext } from "react";
 // import CardDetails from "./components/CardDetails";
@@ -19,37 +19,50 @@ const Album = () => {
   console.log(userNftCollection);
 
   return (
-    <Container fluid className="nft-cards-container">
-      <ToggleSlider
-        barBackgroundColor="#452f6b"
-        barBackgroundColorActive="#d9ac18"
-        onToggle={() => {
-          setActive(!active);
-        }}
-      />
-      {!active ? (
-        <Row>
-          {userNftCollection.assets &&
-            userNftCollection.assets
-              .filter((object) => {
-                if (id) {
-                  return object.token_id === id;
-                } else {
-                  return object;
-                }
-              })
-              .map((albumCard) => {
-                return (
-                  <Col key={albumCard.token_id}>
-                    <NFTCard albumCard={albumCard} unique={id} />
-                  </Col>
-                );
-              })}
-        </Row>
+    <>
+      {!id ? (
+        <div className="slider-container">
+          <span className="view-label">Album View</span>
+          <ToggleSlider
+            className="toggle-slider"
+            barBackgroundColor="#452f6b"
+            barBackgroundColorActive="#d9ac18"
+            onToggle={() => {
+              setActive(!active);
+            }}
+          />
+          <span>Deck View</span>
+        </div>
       ) : (
-        <Deck />
+        <div className="back-to-album">
+          <Link to="/collection">Back to Album</Link>
+        </div>
       )}
-    </Container>
+      <Container fluid className="nft-cards-container">
+        {!active ? (
+          <Row>
+            {userNftCollection.assets &&
+              userNftCollection.assets
+                .filter((object) => {
+                  if (id) {
+                    return object.token_id === id;
+                  } else {
+                    return object;
+                  }
+                })
+                .map((albumCard) => {
+                  return (
+                    <Col key={albumCard.token_id}>
+                      <NFTCard albumCard={albumCard} unique={id} />
+                    </Col>
+                  );
+                })}
+          </Row>
+        ) : (
+          <Deck />
+        )}
+      </Container>
+    </>
   );
 };
 

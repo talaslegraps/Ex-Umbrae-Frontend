@@ -108,14 +108,15 @@ body {
 .logo-header {
   background-color: var(--main-bg-color);
   padding-left: 1rem;
-  padding-top: 1rem;
   display: flex;
-  height: 100px;
+  height: 200px;
+  position: sticky;
+  top: 0;
 }
 
 .logo-header img {
   cursor: pointer;
-  height: 100px;
+  height: 150px;
   width: auto;
   align-self: center;
 }
@@ -124,7 +125,7 @@ body {
   color: var(--accent-color);
   padding-top: 1rem;
   align-self: center;
-  margin-left: 20px;
+  margin-left: 1rem;
   font-family: "DarkMagic";
   font-size: 70px;
 }
@@ -147,6 +148,40 @@ body {
 
 .front-title {
   margin-top: 10px;
+}
+
+.deck-container {
+  padding-top: 0;
+  margin-top: 50px;
+}
+
+.slider-container {
+  display: flex;
+  justify-content: center;
+  background-color: var(--main-bg-color);
+  color: var(--alternative-accent-color);
+  padding-bottom: 20px;
+  position: sticky;
+  top: 200px;
+}
+
+.view-label {
+  margin-right: 1rem;
+}
+
+.back-to-album {
+  background-color: var(--main-bg-color);
+}
+
+.back-to-album a {
+  color: var(--alternative-accent-color);
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+
+.back-to-album a:hover {
+  color: var(--accent-color);
 }
 
 /* KeyFrames */

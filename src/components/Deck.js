@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useSprings, animated, interpolate } from "react-spring";
 import { useGesture } from "react-use-gesture";
+import MetadataContext from "../context/MetadataContext";
 import "../styles/components/Deck.css";
 
 const cards = [
@@ -28,8 +29,11 @@ const trans = (r, s) =>
   }deg) rotateZ(${r}deg) scale(${s})`;
 
 function Deck() {
+  const { userNftCollection } = useContext(MetadataContext);
+  console.log(userNftCollection);
+
   const [gone] = useState(() => new Set()); // The set flags all the cards that are flicked out
-  const [props, set] = useSprings(cards.length, (i) => ({
+  const [props, set] = useSprings(userNftCollection.assets.length, (i) => ({
     ...to(i),
     from: from(i),
   })); // Create a bunch of springs using the helpers above
@@ -60,7 +64,7 @@ function Deck() {
           config: { friction: 50, tension: down ? 800 : isGone ? 200 : 500 },
         };
       });
-      if (!down && gone.size === cards.length)
+      if (!down && gone.size === userNftCollection.assets.length)
         setTimeout(() => gone.clear() || set((i) => to(i)), 600);
     }
   );
@@ -81,7 +85,7 @@ function Deck() {
         {...bind(i)}
         style={{
           transform: interpolate([rot, scale], trans),
-          backgroundImage: `url(${cards[i]})`,
+          backgroundImage: `url(${userNftCollection.assets[i].image_original_url})`,
         }}
         className="deck-card"
       />
