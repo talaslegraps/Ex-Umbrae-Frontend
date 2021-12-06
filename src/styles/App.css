@@ -185,6 +185,19 @@ body {
   color: var(--accent-color);
 }
 
+.modal-content {
+  background-color: var(--secondary-color) !important;
+  color: var(--alternative-accent-color);
+}
+
+.modal-content .cta-button {
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
+}
+
+.modal-content a {
+  color: var(--accent-color);
+}
 /* KeyFrames */
 @-webkit-keyframes gradient-animation {
   0% {

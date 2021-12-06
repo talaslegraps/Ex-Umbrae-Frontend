@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import MetadataContext from "./context/MetadataContext";
 import Navbar from "./components/Navbar";
 import Album from "./components/Album.js";
+import MyVerticallyCenteredModal from "./utils/utils";
 
 const OPENSEA_LINK = "https://testnets.opensea.io/collection/exumbrae";
 
@@ -19,6 +20,8 @@ const App = () => {
   const [openSeaAPI, setOpenSeaAPI] = useState("");
   const [userNftCollection, setUserNftCollection] = useState([]);
   const [sidebar, setSidebar] = useState(false);
+  const [modalShow, setModalShow] = React.useState(false);
+
   const showSidebar = () => setSidebar(!sidebar);
 
   const checkIfWalletIsConnected = async () => {
@@ -202,12 +205,21 @@ const App = () => {
   };
 
   const renderNotConnectedContainer = () => (
-    <button
-      onClick={connectWallet}
-      className="cta-button connect-wallet-button"
-    >
-      Connect to Wallet
-    </button>
+    <>
+      <button className="cta-button" onClick={() => setModalShow(true)}>
+        About
+      </button>
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+      <button
+        onClick={connectWallet}
+        className="cta-button connect-wallet-button"
+      >
+        Connect to Wallet
+      </button>
+    </>
   );
 
   useEffect(() => {
