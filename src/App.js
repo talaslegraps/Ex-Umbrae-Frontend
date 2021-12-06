@@ -3,16 +3,16 @@ import "./styles/App.css";
 import { ethers } from "ethers";
 import myEpicNft from "./utils/MyEpicNFT.json";
 import { Switch, Route, Link } from "react-router-dom";
-import logo from "./media/logo.png";
+import logo from "./media/logo_final.png";
 import Header from "./components/Header";
 // import CardDetails from "./components/CardDetails";
 import MetadataContext from "./context/MetadataContext";
 import Navbar from "./components/Navbar";
 import Album from "./components/Album.js";
 
-const OPENSEA_LINK = "https://testnets.opensea.io/collection/sorcerers-v3";
+const OPENSEA_LINK = "https://testnets.opensea.io/collection/exumbrae";
 
-const CONTRACT_ADDRESS = "0x6F6eA850e7ba15BDa6AcBa264eBe038721D429cA";
+const CONTRACT_ADDRESS = "0x8B4172145AAC5cDBbeadec85cfdD21FB3EC770F0";
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
@@ -234,7 +234,7 @@ const App = () => {
             <div className="container">
               <div className="header-container">
                 <img src={logo} alt="logo" />
-                <p className="landing-header-text">Le Card Game</p>
+                <p className="font-face-magic">Ex Umbrae</p>
                 <p className="sub-text">NFT Trading Card Game</p>
                 <div className="button-container">
                   {currentAccount === "" ? (
@@ -267,7 +267,7 @@ const App = () => {
                     </>
                   )}
                   <button
-                    onClick={() => window.location.assign(OPENSEA_LINK)}
+                    onClick={() => window.open(OPENSEA_LINK, "_blank")}
                     className="cta-button opensea-button"
                   >
                     Watch Collection on OpenSea
