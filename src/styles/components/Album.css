@@ -5,9 +5,16 @@
 
 .nft-cards-container {
   background-color: var(--main-bg-color);
-  min-height: 100vh;
 }
 
-.album-front-title {
-  margin-top: 10px;
+.details-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.front-title {
+  font-family: "DarkMagic";
+  text-align: center;
+  font-size: 1.7rem !important;
 }

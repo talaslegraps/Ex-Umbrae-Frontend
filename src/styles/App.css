@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: var(--main-bg-color);
+  background-color: var(--main-bg-color) !important;
   min-height: 100vh;
 }
 
@@ -231,5 +231,4 @@ body {
   align-self: center;
   justify-content: end;
   display: flex;
-  
 }
