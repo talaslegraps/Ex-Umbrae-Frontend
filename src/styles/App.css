@@ -225,3 +225,10 @@ body {
   padding: 0;
   font-family: "Segoe UI", sans-serif;
 }
+.menu-icon {
+  color: #d9ac18;
+  align-self: center;
+  justify-content: end;
+  display: flex;
+  
+}
