@@ -1,6 +1,6 @@
 import logo from "../media/logo.png";
 
-const Header = ({onShowSidebar}) => {
+const Header = ({ onShowSidebar }) => {
   return (
     <div className="logo-header">
       <img src={logo} onClick={onShowSidebar} alt="logo" />
