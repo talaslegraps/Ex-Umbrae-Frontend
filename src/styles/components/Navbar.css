@@ -1,5 +1,11 @@
+:root {
+  --main-bg-color: #131019;
+  --secondary-color: #452f6b;
+  --accent-color: #d9ac18;
+  --alternative-accent-color: #ffffff;
+}
 .navbar {
-  background-color: #131019;
+  background-color: var(--main-bg-color);
   height: 80px;
   display: flex;
   justify-content: flex-start;
@@ -11,23 +17,23 @@
 }
 .nav-menu {
   margin-top: 2rem;
-  background-color: #131019;
-  width: 250px;
-  height: 100vh;
+  background-color: var(--main-bg-color);
+  width: 50rem;
+  height: 4vh;
   display: flex;
   justify-content: center;
   position: fixed;
-  top: 100px;
-  left: -100%;
+  top: 20px;
+  right: -100%;
   transition: 850ms;
 }
 .nav-menu.active {
   z-index: 100;
-  left: 0;
+  right: 0;
   transition: 250ms;
 }
 .nav-text {
-  display: flex;
+  display: inline;
   justify-content: flex-start;
   align-items: center;
   padding: 0px 0px 8px 0px;
@@ -41,9 +47,10 @@
   font-size: 18px;
   width: 95%;
   height: 100%;
-  display: flex;
+  display: inline;
   align-items: center;
   padding: 0px 0px;
+  margin: 20px;
   border-radius: 4px;
 }
 .nav-text a:hover {
@@ -51,9 +58,10 @@
   border-width: 3px;
   border-style: solid;
   background-color: #302643;
-}
+  padding-right: 10px;
+  }
 .nav-menu-items {
-  padding-left: 1.25rem;
+  padding-left: 1rem;
   width: 100%;
 }
 .navbar-toggle {
