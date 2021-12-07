@@ -20,6 +20,12 @@ const SidebarData = [
     icon: <GiIcons.GiAbstract032 />,
     className: "nav-text",
   },
+  {
+    title: "Info",
+    path: "/info",
+    icon: <GiIcons.GiAbstract038 />,
+    className: "nav-text",
+  },
 ];
 
 export default SidebarData;

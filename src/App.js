@@ -10,6 +10,8 @@ import MetadataContext from "./context/MetadataContext";
 import Navbar from "./components/Navbar";
 import Album from "./components/Album.js";
 import MyVerticallyCenteredModal from "./utils/utils";
+import PopUpConfirmation from "./components/PopUpConfirmation";
+import Info from "./components/Info";
 
 const OPENSEA_LINK = "https://testnets.opensea.io/collection/exumbrae";
 
@@ -21,6 +23,7 @@ const App = () => {
   const [userNftCollection, setUserNftCollection] = useState([]);
   const [sidebar, setSidebar] = useState(false);
   const [modalShow, setModalShow] = React.useState(false);
+  const [minting, setMinting] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
 
@@ -126,11 +129,13 @@ const App = () => {
         let nftTxn = await connectedContract.makeWizardNFT();
 
         console.log("Mining...please wait.");
+        setMinting(true);
         await nftTxn.wait();
 
         console.log(
           `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
         );
+        setMinting(false);
       } else {
         console.log("Ethereum object does not exist!");
       }
@@ -158,11 +163,13 @@ const App = () => {
         let nftTxn = await connectedContract.makeWarlockNFT();
 
         console.log("Mining...please wait.");
+        setMinting(true);
         await nftTxn.wait();
 
         console.log(
           `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
         );
+        setMinting(false);
       } else {
         console.log("Ethereum object does not exist!");
       }
@@ -190,11 +197,13 @@ const App = () => {
         let nftTxn = await connectedContract.makeNecromancerNFT();
 
         console.log("Mining...please wait.");
+        setMinting(true);
         await nftTxn.wait();
 
         console.log(
           `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
         );
+        setMinting(false);
       } else {
         console.log("Ethereum object does not exist!");
       }
@@ -241,6 +250,11 @@ const App = () => {
           <Navbar sidebar={sidebar} onShowSidebar={showSidebar} />
           <Album />
         </Route>
+        <Route path="/info">
+          <Header onShowSidebar={showSidebar} />
+          <Navbar sidebar={sidebar} onShowSidebar={showSidebar} />
+          <Info />
+        </Route>
         <Route path="/">
           <div className="App">
             <div className="container">
@@ -251,6 +265,8 @@ const App = () => {
                 <div className="button-container">
                   {currentAccount === "" ? (
                     renderNotConnectedContainer()
+                  ) : minting === true ? (
+                    <h1>The spirits are listening to your invocation...</h1>
                   ) : (
                     <>
                       <button
