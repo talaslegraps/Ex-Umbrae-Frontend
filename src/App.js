@@ -10,7 +10,6 @@ import MetadataContext from "./context/MetadataContext";
 import Navbar from "./components/Navbar";
 import Album from "./components/Album.js";
 import MyVerticallyCenteredModal from "./utils/utils";
-import PopUpConfirmation from "./components/PopUpConfirmation";
 import Info from "./components/Info";
 
 const OPENSEA_LINK = "https://testnets.opensea.io/collection/exumbrae";
@@ -246,8 +245,7 @@ const App = () => {
     <MetadataContext.Provider value={{ userNftCollection }}>
       <Switch>
         <Route path="/collection/:id?">
-          <Header onShowSidebar={showSidebar} />
-          <Navbar sidebar={sidebar} onShowSidebar={showSidebar} />
+          <Header onShowSidebar={showSidebar} sidebar={sidebar} />
           <Album />
         </Route>
         <Route path="/info">
