@@ -15,12 +15,6 @@ const SidebarData = [
     className: "nav-text",
   },
   {
-    title: "Cards",
-    path: "/collection/:id",
-    icon: <GiIcons.GiAbstract032 />,
-    className: "nav-text",
-  },
-  {
     title: "Info",
     path: "/info",
     icon: <GiIcons.GiAbstract038 />,
