@@ -12,6 +12,7 @@ import Album from "./components/Album.js";
 import MyVerticallyCenteredModal from "./utils/utils";
 import PopUpConfirmation from "./components/PopUpConfirmation";
 import Info from "./components/Info";
+import Spinner from "./components/Spinner";
 
 const OPENSEA_LINK = "https://testnets.opensea.io/collection/exumbrae";
 
@@ -23,6 +24,8 @@ const App = () => {
   const [userNftCollection, setUserNftCollection] = useState([]);
   const [sidebar, setSidebar] = useState(false);
   const [modalShow, setModalShow] = React.useState(false);
+  const [popUp, setPopUp] = React.useState(false);
+
   const [minting, setMinting] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
@@ -230,6 +233,12 @@ const App = () => {
       </button>
     </>
   );
+// popup???
+  const popUpConfirmation = () => {
+    return (
+      <PopUpConfirmation show={modalShow} onHide={() => setModalShow(false)} />
+    );
+  };
 
   useEffect(() => {
     checkIfWalletIsConnected();
@@ -266,9 +275,13 @@ const App = () => {
                   {currentAccount === "" ? (
                     renderNotConnectedContainer()
                   ) : minting === true ? (
-                    <h1>The spirits are listening to your invocation...</h1>
+                    <>
+                      <h1>The spirits are listening to your invocation...</h1>
+                      <Spinner />
+                    </>
                   ) : (
                     <>
+                      {/* {popUpConfirmation()} */}
                       <button
                         onClick={askContractToMintWizard}
                         className="cta-button connect-wallet-button"
