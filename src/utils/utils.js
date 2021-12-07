@@ -23,8 +23,8 @@ function MyVerticallyCenteredModal(props) {
         </p>
         <p>
           Smart Contract:{" "}
-          <a href="https://rinkeby.etherscan.io/address/0x8B4172145AAC5cDBbeadec85cfdD21FB3EC770F0">
-            0x8B4172145AAC5cDBbeadec85cfdD21FB3EC770F0
+          <a href="https://rinkeby.etherscan.io/address/0x21F98862eb86f44604e1F8F67761E34901905216">
+            0x21F98862eb86f44604e1F8F67761E34901905216
           </a>
         </p>
       </Modal.Body>

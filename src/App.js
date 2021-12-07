@@ -5,7 +5,6 @@ import myEpicNft from "./utils/MyEpicNFT.json";
 import { Switch, Route, Link } from "react-router-dom";
 import logo from "./media/logo_final.png";
 import Header from "./components/Header";
-// import CardDetails from "./components/CardDetails";
 import MetadataContext from "./context/MetadataContext";
 import Navbar from "./components/Navbar";
 import Album from "./components/Album.js";
@@ -15,7 +14,7 @@ import Spinner from "./components/Spinner";
 
 const OPENSEA_LINK = "https://testnets.opensea.io/collection/exumbrae";
 
-const CONTRACT_ADDRESS = "0x8B4172145AAC5cDBbeadec85cfdD21FB3EC770F0";
+const CONTRACT_ADDRESS = "0x21F98862eb86f44604e1F8F67761E34901905216";
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
@@ -232,12 +231,12 @@ const App = () => {
       </button>
     </>
   );
-// popup???
-  const popUpConfirmation = () => {
-    return (
-      <PopUpConfirmation show={modalShow} onHide={() => setModalShow(false)} />
-    );
-  };
+  // popup???
+  // const popUpConfirmation = () => {
+  //   return (
+  //     <PopUpConfirmation show={modalShow} onHide={() => setModalShow(false)} />
+  //   );
+  // };
 
   useEffect(() => {
     checkIfWalletIsConnected();
