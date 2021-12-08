@@ -2,7 +2,11 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-const NFTCard = ({ albumCard: { token_metadata, token_id }, unique }) => {
+const NFTCard = ({
+  albumCard: { token_metadata, token_id },
+  unique,
+  CONTRACT_ADDRESS,
+}) => {
   const [metadata, setMetadata] = useState("");
 
   useEffect(() => {
@@ -47,6 +51,13 @@ const NFTCard = ({ albumCard: { token_metadata, token_id }, unique }) => {
                 <Card.Text>HP: {metadata.HP}</Card.Text>
                 <Card.Text>Power: {metadata.POW}</Card.Text>
                 <Card.Text>Card ID: {token_id}</Card.Text>
+                <Card.Text>
+                  <a
+                    href={`https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${token_id}`}
+                  >
+                    Check on OpenSea
+                  </a>
+                </Card.Text>
               </div>
             </Card.Body>
           </Card>
