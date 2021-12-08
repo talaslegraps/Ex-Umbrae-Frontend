@@ -4,24 +4,38 @@
   --accent-color: #d9ac18;
   --alternative-accent-color: #ffffff;
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
 .info-container {
   display: flex;
   flex-direction: column;
   max-width: 65rem;
-  margin: 4rem;
+  padding: 4rem;
+  background-color: var(--main-bg-color);
+  align-self: center;
+}
+
+.section-text {
+  margin-bottom: 30px;
 }
 
 .info-font-face-magic {
   font-family: "DarkMagic";
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: var(--accent-color);
-  margin-bottom: 1px;
+  margin-bottom: 10px;
 }
 .info-text {
-  color: var(--accent-color);
+  color: var(--alternative-accent-color);
+  font-size: 20px;
 }
 
 .class-text {
   color: var(--accent-color);
-  font-weight: bolder;
+  font-family: "DarkMagic";
+  font-size: 2rem;
 }

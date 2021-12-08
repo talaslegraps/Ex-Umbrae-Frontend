@@ -9,7 +9,6 @@ import MetadataContext from "./context/MetadataContext";
 import Album from "./components/Album.js";
 import MyVerticallyCenteredModal from "./utils/utils";
 import Info from "./components/Info";
-import Spinner from "./components/Spinner";
 import Candle from "./components/Candle";
 
 const OPENSEA_LINK = "https://testnets.opensea.io/collection/exumbrae-v3";
@@ -22,7 +21,6 @@ const App = () => {
   const [userNftCollection, setUserNftCollection] = useState([]);
   const [sidebar, setSidebar] = useState(false);
   const [modalShow, setModalShow] = React.useState(false);
-  const [popUp, setPopUp] = React.useState(false);
 
   const [minting, setMinting] = useState(false);
 
@@ -231,12 +229,6 @@ const App = () => {
       </button>
     </>
   );
-  // popup???
-  // const popUpConfirmation = () => {
-  //   return (
-  //     <PopUpConfirmation show={modalShow} onHide={() => setModalShow(false)} />
-  //   );
-  // };
 
   useEffect(() => {
     checkIfWalletIsConnected();
@@ -265,21 +257,24 @@ const App = () => {
             <div className="container">
               <div className="header-container">
                 <img src={logo} alt="logo" />
-                <p className="font-face-magic">Ex Umbrae</p>
-                <p className="sub-text">NFT Trading Card Game</p>
+                {!minting && (
+                  <>
+                    <p className="font-face-magic">Ex Umbrae</p>
+                    <p className="sub-text">NFT Trading Card Game</p>
+                  </>
+                )}
                 <div className="button-container">
                   {currentAccount === "" ? (
                     renderNotConnectedContainer()
                   ) : minting === true ? (
                     <>
-                    <Candle />  
-                    <h1 className="mint-message">
+                      <Candle />
+                      <h2 className="mint-message">
                         The spirits are listening to your invocation...
-                      </h1>
+                      </h2>
                     </>
                   ) : (
                     <>
-                      {/* {popUpConfirmation()} */}
                       <button
                         onClick={askContractToMintWizard}
                         className="cta-button connect-wallet-button"

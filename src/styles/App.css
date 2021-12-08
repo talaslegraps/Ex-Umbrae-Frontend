@@ -246,4 +246,7 @@
 }
 .mint-message {
   color: var(--alternative-accent-color);
+  margin-bottom: 3rem;
+  font-style: italic;
+  font-family: "Times New Roman", Times, serif;
 }

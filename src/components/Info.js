@@ -4,7 +4,7 @@ import "../styles/components/Info.css";
 function Info() {
   return (
     <div className="info-container">
-      <div className="lore-text">
+      <div className="lore-text section-text">
         <h1 className="info-font-face-magic">Lore</h1>
         <p className="info-text">
           Ex Umbrae - from the shadows. Since the birth of the Terra Magnifica,
@@ -15,7 +15,7 @@ function Info() {
           These practices however carry inherent sin, because those who wish to
           step into the shadow and feed on its powers must offer a live
           sacrifice. Some do it without blink of an eye to gain power. Some to
-          it from despair.......Because......
+          it from despair....... Because......
           <b>
             <i>Monstra nostra exit ab umbris</i>
           </b>
@@ -29,7 +29,7 @@ function Info() {
           />
         </div> */}
       </div>
-      <div className="about-classes-text">
+      <div className="about-classes-text section-text">
         <h1 className="info-font-face-magic">Classes</h1>
         <p className="info-text">
           There are three main groups of magically gifted that reach to the
@@ -64,7 +64,7 @@ function Info() {
           extend where they cannot be even compared to the humans.
         </p>
       </div>
-      <div className="about-nfts-text">
+      <div className="about-nfts-text section-text">
         <h1 className="info-font-face-magic">About NFTs</h1>
         <p className="info-text">
           A non-fungible token (NFT) is a unique and non-interchangeable unit of
@@ -79,7 +79,7 @@ function Info() {
           such as Bitcoin.
         </p>
       </div>
-      <div className="about-project-text">
+      <div className="about-project-text section-text">
         <h1 className="info-font-face-magic">About this project</h1>
         <p className="info-text">
           This project is final project of WBS Coding School Web-Development
