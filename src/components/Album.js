@@ -10,7 +10,7 @@ import Col from "react-bootstrap/Col";
 import "../styles/components/Album.css";
 import { ToggleSlider } from "react-toggle-slider";
 
-const Album = () => {
+const Album = ({ CONTRACT_ADDRESS }) => {
   const { userNftCollection } = useContext(MetadataContext);
   const { id } = useParams();
   const [deckActive, setDeckActive] = useState(false);
@@ -52,7 +52,11 @@ const Album = () => {
                 .map((albumCard) => {
                   return (
                     <Col key={albumCard.token_id}>
-                      <NFTCard albumCard={albumCard} unique={id} />
+                      <NFTCard
+                        albumCard={albumCard}
+                        CONTRACT_ADDRESS={CONTRACT_ADDRESS}
+                        unique={id}
+                      />
                     </Col>
                   );
                 })}

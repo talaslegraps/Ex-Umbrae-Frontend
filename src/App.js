@@ -9,7 +9,7 @@ import MetadataContext from "./context/MetadataContext";
 import Album from "./components/Album.js";
 import MyVerticallyCenteredModal from "./utils/utils";
 import Info from "./components/Info";
-import Candle from "./components/Candle";
+import Mint from "./components/Mint";
 
 const OPENSEA_LINK = "https://testnets.opensea.io/collection/exumbrae-v3";
 
@@ -21,8 +21,6 @@ const App = () => {
   const [userNftCollection, setUserNftCollection] = useState([]);
   const [sidebar, setSidebar] = useState(false);
   const [modalShow, setModalShow] = React.useState(false);
-
-  const [minting, setMinting] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
 
@@ -96,7 +94,7 @@ const App = () => {
           if (from.toLowerCase() === account) {
             console.log(from, tokenId.toNumber());
             return window.alert(
-              `Your invocation was successful and your hero is on the way. It can take a maximum of 10 minutes to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`
+              `Your invocation was successful and your hero is on the way. It can take a maximum of 10 minutes to show up in your Album and on OpenSea. Here's the link: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`
             );
           }
         });
@@ -107,108 +105,6 @@ const App = () => {
       }
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const askContractToMintWizard = async () => {
-    try {
-      const { ethereum } = window;
-
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-
-        const connectedContract = new ethers.Contract(
-          CONTRACT_ADDRESS,
-          myEpicNft.abi,
-          signer
-        );
-
-        console.log("Going to pop wallet now to pay gas...");
-        let nftTxn = await connectedContract.makeWizardNFT();
-
-        console.log("Mining...please wait.");
-        setMinting(true);
-        await nftTxn.wait();
-
-        console.log(
-          `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
-        );
-        setMinting(false);
-      } else {
-        console.log("Ethereum object does not exist!");
-      }
-    } catch (error) {
-      console.log(error);
-      window.alert(error);
-    }
-  };
-
-  const askContractToMintWarlock = async () => {
-    try {
-      const { ethereum } = window;
-
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-
-        const connectedContract = new ethers.Contract(
-          CONTRACT_ADDRESS,
-          myEpicNft.abi,
-          signer
-        );
-
-        console.log("Going to pop wallet now to pay gas...");
-        let nftTxn = await connectedContract.makeWarlockNFT();
-
-        console.log("Mining...please wait.");
-        setMinting(true);
-        await nftTxn.wait();
-
-        console.log(
-          `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
-        );
-        setMinting(false);
-      } else {
-        console.log("Ethereum object does not exist!");
-      }
-    } catch (error) {
-      console.log(error);
-      window.alert(error);
-    }
-  };
-
-  const askContractToMintNecromancer = async () => {
-    try {
-      const { ethereum } = window;
-
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-
-        const connectedContract = new ethers.Contract(
-          CONTRACT_ADDRESS,
-          myEpicNft.abi,
-          signer
-        );
-
-        console.log("Going to pop wallet now to pay gas...");
-        let nftTxn = await connectedContract.makeNecromancerNFT();
-
-        console.log("Mining...please wait.");
-        setMinting(true);
-        await nftTxn.wait();
-
-        console.log(
-          `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
-        );
-        setMinting(false);
-      } else {
-        console.log("Ethereum object does not exist!");
-      }
-    } catch (error) {
-      console.log(error);
-      window.alert(error);
     }
   };
 
@@ -246,68 +142,46 @@ const App = () => {
       <Switch>
         <Route path="/collection/:id?">
           <Header onShowSidebar={showSidebar} sidebar={sidebar} />
-          <Album />
+          <Album CONTRACT_ADDRESS={CONTRACT_ADDRESS} />
         </Route>
         <Route path="/info">
           <Header onShowSidebar={showSidebar} sidebar={sidebar} />
           <Info />
+        </Route>
+        <Route path="/mint">
+          <Header onShowSidebar={showSidebar} sidebar={sidebar} />
+          <Mint CONTRACT_ADDRESS={CONTRACT_ADDRESS} />
         </Route>
         <Route path="/">
           <div className="App">
             <div className="container">
               <div className="header-container">
                 <img src={logo} alt="logo" />
-                {!minting && (
-                  <>
-                    <p className="font-face-magic">Ex Umbrae</p>
-                    <p className="sub-text">NFT Trading Card Game</p>
-                  </>
-                )}
+                <p className="font-face-magic">Ex Umbrae</p>
+                <p className="sub-text">NFT Trading Card Game</p>
                 <div className="button-container">
                   {currentAccount === "" ? (
                     renderNotConnectedContainer()
-                  ) : minting === true ? (
-                    <>
-                      <Candle />
-                      <h2 className="mint-message">
-                        The spirits are listening to your invocation...
-                      </h2>
-                    </>
                   ) : (
                     <>
-                      <button
-                        onClick={askContractToMintWizard}
-                        className="cta-button connect-wallet-button"
-                      >
-                        Mint Wizard
-                      </button>
-                      <button
-                        onClick={askContractToMintWarlock}
-                        className="cta-button connect-wallet-button"
-                      >
-                        Mint Warlock
-                      </button>
-                      <button
-                        onClick={askContractToMintNecromancer}
-                        className="cta-button connect-wallet-button"
-                      >
-                        Mint Necromancer
-                      </button>
+                      <Link to="/mint">
+                        <button className="cta-button opensea-button">
+                          Summon
+                        </button>
+                      </Link>
                       <Link to="/collection">
                         <button className="cta-button opensea-button">
-                          My Collection
+                          My Cards
                         </button>
                       </Link>
                     </>
                   )}
-                  {!minting && (
-                    <button
-                      onClick={() => window.open(OPENSEA_LINK, "_blank")}
-                      className="cta-button opensea-button"
-                    >
-                      Watch Collection on OpenSea
-                    </button>
-                  )}
+                  <button
+                    onClick={() => window.open(OPENSEA_LINK, "_blank")}
+                    className="cta-button opensea-button"
+                  >
+                    Collection on OpenSea
+                  </button>
                 </div>
               </div>
               <div className="footer-container"></div>

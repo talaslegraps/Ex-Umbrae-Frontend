@@ -5,13 +5,19 @@ const SidebarData = [
   {
     title: "Front Page",
     path: "/",
-    icon: <GiIcons.GiAbstract024 />,
+    icon: <GiIcons.GiAbstract005 />,
     className: "nav-text",
   },
   {
     title: "Album",
     path: "/collection",
     icon: <GiIcons.GiAbstract026 />,
+    className: "nav-text",
+  },
+  {
+    title: "Summon",
+    path: "/mint",
+    icon: <GiIcons.GiAbstract016 />,
     className: "nav-text",
   },
   {

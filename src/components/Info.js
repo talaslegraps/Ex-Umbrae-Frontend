@@ -1,4 +1,7 @@
 import React from "react";
+import wizSymbol from "../media/symbol_wizard_gold.png";
+import warSymbol from "../media/symbol_warlock_gold.png";
+import necSymbol from "../media/symbol_necromancer_gold.png";
 import "../styles/components/Info.css";
 
 function Info() {
@@ -21,13 +24,6 @@ function Info() {
           </b>
           ......Our monsters step out from the shadow.
         </p>
-        {/* <div>
-          {" "}
-          <img
-            className="image-wizard"
-            src="https://gateway.pinata.cloud/ipfs/QmYMHNmcj6KKFPQ1DaSYnN9zqwZqXLz3vjAw6KeV1Rg2dS/purple_wiz_500x900.png"
-          />
-        </div> */}
       </div>
       <div className="about-classes-text section-text">
         <h1 className="info-font-face-magic">Classes</h1>
@@ -35,18 +31,24 @@ function Info() {
           There are three main groups of magically gifted that reach to the
           shadows.
         </p>
-        <h3 className="class-text">Wizards</h3>
+        <h3 className="class-text">
+          <img className="class-symbol" src={wizSymbol} alt="wizard symbol" />
+          Wizards
+        </h3>
         <p className="info-text">
           Wizards are really interesting group of various level of education and
           preference of shadow or light. Their education varies from home
-          schooled wizardz, educated by local village wizard, to wizards
+          schooled wizards, educated by local village wizard, to wizards
           educated at coutry schools up to the wizardy elite educated at few
           elite <b>Academia Veneficus</b>-Wizardry Academies. Not all wizards
           try to step into the shadows, or even think about it. But those who
           do, establish very careful aproach, since live sacrifice takes a great
           toll on a soul of human being.
         </p>
-        <h3 className="class-text">Warlocks</h3>
+        <h3 className="class-text">
+          <img className="class-symbol" src={warSymbol} alt="wizard symbol" />
+          Warlocks
+        </h3>
         <p className="info-text">
           Most of the warlocks started as wizards, again various education and
           backgrounds. What separates them from wizards is lack of remorse and a
@@ -56,7 +58,10 @@ function Info() {
           and most of them end up taking their own lives after series of
           sacrifices.
         </p>
-        <h3 className="class-text">Necromancers</h3>
+        <h3 className="class-text">
+          <img className="class-symbol" src={necSymbol} alt="wizard symbol" />
+          Necromancers
+        </h3>
         <p className="info-text">
           Origin of necromancers is unknown to us. Trough human sacrifice and
           dark magic they cheated death possibly for centuries. This however
