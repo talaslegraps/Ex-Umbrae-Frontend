@@ -5,8 +5,8 @@
   --alternative-accent-color: #ffffff;
 }
 
-body {
-  background-color: var(--main-bg-color);
+.body {
+  background-color: var(--main-bg-color) !important;
   min-height: 100vh;
 }
 
@@ -53,7 +53,7 @@ body {
 
 .sub-text {
   margin-top: 0;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   font-size: 20px;
   color: var(--accent-color);
 }
@@ -81,7 +81,7 @@ body {
   animation: gradient-animation 4s ease infinite; */
   background-color: var(--secondary-color);
 }
-
+/* this might be redundant */
 .mint-count {
   color: white;
   font-size: 18px;
@@ -110,7 +110,7 @@ body {
   background-color: var(--main-bg-color);
   padding-left: 1rem;
   display: flex;
-  height: 200px;
+  height: 170px;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -125,7 +125,6 @@ body {
 
 .logo-header h2 {
   color: var(--accent-color);
-  padding-top: 1rem;
   align-self: center;
   margin-left: 1rem;
   font-family: "DarkMagic";
@@ -157,10 +156,10 @@ body {
   justify-content: center;
   background-color: var(--main-bg-color);
   color: var(--alternative-accent-color);
-  top: 200px;
+  top: 170px;
   position: sticky;
   z-index: 1;
-  padding-bottom: 3px;
+  padding-bottom: 10px;
 }
 
 .view-label {
@@ -170,7 +169,7 @@ body {
 .back-to-album {
   background-color: var(--main-bg-color);
   position: sticky;
-  top: 200px;
+  top: 180px;
   z-index: 1;
 }
 
@@ -185,6 +184,19 @@ body {
   color: var(--accent-color);
 }
 
+.modal-content {
+  background-color: var(--secondary-color) !important;
+  color: var(--alternative-accent-color);
+}
+
+.modal-content .cta-button {
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
+}
+
+.modal-content a {
+  color: var(--accent-color);
+}
 /* KeyFrames */
 @-webkit-keyframes gradient-animation {
   0% {
@@ -227,9 +239,14 @@ body {
   font-family: "Segoe UI", sans-serif;
 }
 .menu-icon {
-  color: #d9ac18;
+  color: var(--accent-color);
   align-self: center;
   justify-content: end;
   display: flex;
-  
+}
+.mint-message {
+  color: var(--alternative-accent-color);
+  margin-bottom: 3rem;
+  font-style: italic;
+  font-family: "Times New Roman", Times, serif;
 }

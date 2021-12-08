@@ -5,20 +5,25 @@ import myEpicNft from "./utils/MyEpicNFT.json";
 import { Switch, Route, Link } from "react-router-dom";
 import logo from "./media/logo_final.png";
 import Header from "./components/Header";
-// import CardDetails from "./components/CardDetails";
 import MetadataContext from "./context/MetadataContext";
-import Navbar from "./components/Navbar";
 import Album from "./components/Album.js";
+import MyVerticallyCenteredModal from "./utils/utils";
+import Info from "./components/Info";
+import Candle from "./components/Candle";
 
-const OPENSEA_LINK = "https://testnets.opensea.io/collection/exumbrae";
+const OPENSEA_LINK = "https://testnets.opensea.io/collection/exumbrae-v3";
 
-const CONTRACT_ADDRESS = "0x8B4172145AAC5cDBbeadec85cfdD21FB3EC770F0";
+const CONTRACT_ADDRESS = "0x21F98862eb86f44604e1F8F67761E34901905216";
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [openSeaAPI, setOpenSeaAPI] = useState("");
   const [userNftCollection, setUserNftCollection] = useState([]);
   const [sidebar, setSidebar] = useState(false);
+  const [modalShow, setModalShow] = React.useState(false);
+
+  const [minting, setMinting] = useState(false);
+
   const showSidebar = () => setSidebar(!sidebar);
 
   const checkIfWalletIsConnected = async () => {
@@ -91,7 +96,7 @@ const App = () => {
           console.log(from, tokenId.toNumber());
           if (from.toLowerCase() === account) {
             return window.alert(
-              `Hey there! We've created your Card and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`
+              `Your invocation was successful and your hero is on the way. It can take a maximum of 10 minutes to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`
             );
           }
         });
@@ -123,11 +128,13 @@ const App = () => {
         let nftTxn = await connectedContract.makeWizardNFT();
 
         console.log("Mining...please wait.");
+        setMinting(true);
         await nftTxn.wait();
 
         console.log(
           `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
         );
+        setMinting(false);
       } else {
         console.log("Ethereum object does not exist!");
       }
@@ -155,11 +162,13 @@ const App = () => {
         let nftTxn = await connectedContract.makeWarlockNFT();
 
         console.log("Mining...please wait.");
+        setMinting(true);
         await nftTxn.wait();
 
         console.log(
           `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
         );
+        setMinting(false);
       } else {
         console.log("Ethereum object does not exist!");
       }
@@ -187,11 +196,13 @@ const App = () => {
         let nftTxn = await connectedContract.makeNecromancerNFT();
 
         console.log("Mining...please wait.");
+        setMinting(true);
         await nftTxn.wait();
 
         console.log(
           `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
         );
+        setMinting(false);
       } else {
         console.log("Ethereum object does not exist!");
       }
@@ -202,12 +213,21 @@ const App = () => {
   };
 
   const renderNotConnectedContainer = () => (
-    <button
-      onClick={connectWallet}
-      className="cta-button connect-wallet-button"
-    >
-      Connect to Wallet
-    </button>
+    <>
+      <button className="cta-button" onClick={() => setModalShow(true)}>
+        About
+      </button>
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+      <button
+        onClick={connectWallet}
+        className="cta-button connect-wallet-button"
+      >
+        Connect to Wallet
+      </button>
+    </>
   );
 
   useEffect(() => {
@@ -225,20 +245,34 @@ const App = () => {
     <MetadataContext.Provider value={{ userNftCollection }}>
       <Switch>
         <Route path="/collection/:id?">
-          <Header onShowSidebar={showSidebar} />
-          <Navbar sidebar={sidebar} onShowSidebar={showSidebar} />
+          <Header onShowSidebar={showSidebar} sidebar={sidebar} />
           <Album />
+        </Route>
+        <Route path="/info">
+          <Header onShowSidebar={showSidebar} sidebar={sidebar} />
+          <Info />
         </Route>
         <Route path="/">
           <div className="App">
             <div className="container">
               <div className="header-container">
                 <img src={logo} alt="logo" />
-                <p className="font-face-magic">Ex Umbrae</p>
-                <p className="sub-text">NFT Trading Card Game</p>
+                {!minting && (
+                  <>
+                    <p className="font-face-magic">Ex Umbrae</p>
+                    <p className="sub-text">NFT Trading Card Game</p>
+                  </>
+                )}
                 <div className="button-container">
                   {currentAccount === "" ? (
                     renderNotConnectedContainer()
+                  ) : minting === true ? (
+                    <>
+                      <Candle />
+                      <h2 className="mint-message">
+                        The spirits are listening to your invocation...
+                      </h2>
+                    </>
                   ) : (
                     <>
                       <button
