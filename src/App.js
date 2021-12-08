@@ -6,7 +6,6 @@ import { Switch, Route, Link } from "react-router-dom";
 import logo from "./media/logo_final.png";
 import Header from "./components/Header";
 import MetadataContext from "./context/MetadataContext";
-import Navbar from "./components/Navbar";
 import Album from "./components/Album.js";
 import MyVerticallyCenteredModal from "./utils/utils";
 import Info from "./components/Info";
@@ -99,7 +98,7 @@ const App = () => {
           console.log(from, tokenId.toNumber());
           if (from.toLowerCase() === account) {
             return window.alert(
-              `Hey there! We've created your Card and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`
+              `Your invocation was successful and your hero is on the way. It can take a maximum of 10 minutes to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`
             );
           }
         });
@@ -258,8 +257,7 @@ const App = () => {
           <Album />
         </Route>
         <Route path="/info">
-          <Header onShowSidebar={showSidebar} />
-          <Navbar sidebar={sidebar} onShowSidebar={showSidebar} />
+          <Header onShowSidebar={showSidebar} sidebar={sidebar} />
           <Info />
         </Route>
         <Route path="/">
@@ -274,8 +272,10 @@ const App = () => {
                     renderNotConnectedContainer()
                   ) : minting === true ? (
                     <>
-                      <Candle />
-                      <h1>The spirits are listening to your invocation...</h1>
+                    <Candle />  
+                    <h1 className="mint-message">
+                        The spirits are listening to your invocation...
+                      </h1>
                     </>
                   ) : (
                     <>
