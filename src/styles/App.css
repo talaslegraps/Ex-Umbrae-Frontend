@@ -81,7 +81,7 @@ body {
   animation: gradient-animation 4s ease infinite; */
   background-color: var(--secondary-color);
 }
-
+/* this might be redundant */
 .mint-count {
   color: white;
   font-size: 18px;
@@ -239,8 +239,11 @@ body {
   font-family: "Segoe UI", sans-serif;
 }
 .menu-icon {
-  color: #d9ac18;
+  color: var(--accent-color);
   align-self: center;
   justify-content: end;
   display: flex;
+}
+.mint-message {
+  color: var(--alternative-accent-color);
 }
