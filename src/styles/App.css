@@ -3,6 +3,7 @@
   --secondary-color: #452f6b;
   --accent-color: #d9ac18;
   --alternative-accent-color: #ffffff;
+  overflow-x: hidden;
 }
 
 .body {
@@ -22,7 +23,6 @@
   background-color: var(--main-bg-color);
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
 }
 
 .font-face-magic {

@@ -10,7 +10,6 @@ const NFTCard = ({ albumCard: { token_metadata, token_id }, unique }) => {
       .then((response) => response.json())
       .then((data) => {
         setMetadata(data);
-        console.log("Metadata set");
       })
       .catch((err) => console.error(err));
   }, [token_metadata]);

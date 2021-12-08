@@ -29,12 +29,12 @@ const App = () => {
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
 
-    if (!ethereum) {
-      console.log("Make sure you have metamask!");
-      return;
-    } else {
-      console.log("We have the ethereum object", ethereum);
-    }
+    // if (!ethereum) {
+    //   console.log("Make sure you have metamask!");
+    //   return;
+    // } else {
+    //   console.log("We have the ethereum object", ethereum);
+    // }
 
     const accounts = await ethereum.request({ method: "eth_accounts" });
 
@@ -93,8 +93,8 @@ const App = () => {
         );
 
         connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
-          console.log(from, tokenId.toNumber());
           if (from.toLowerCase() === account) {
+            console.log(from, tokenId.toNumber());
             return window.alert(
               `Your invocation was successful and your hero is on the way. It can take a maximum of 10 minutes to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`
             );
@@ -300,12 +300,14 @@ const App = () => {
                       </Link>
                     </>
                   )}
-                  <button
-                    onClick={() => window.open(OPENSEA_LINK, "_blank")}
-                    className="cta-button opensea-button"
-                  >
-                    Watch Collection on OpenSea
-                  </button>
+                  {!minting && (
+                    <button
+                      onClick={() => window.open(OPENSEA_LINK, "_blank")}
+                      className="cta-button opensea-button"
+                    >
+                      Watch Collection on OpenSea
+                    </button>
+                  )}
                 </div>
               </div>
               <div className="footer-container"></div>
