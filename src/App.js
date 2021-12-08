@@ -10,8 +10,9 @@ import Album from "./components/Album.js";
 import MyVerticallyCenteredModal from "./utils/utils";
 import Info from "./components/Info";
 import Spinner from "./components/Spinner";
+import Candle from "./components/Candle";
 
-const OPENSEA_LINK = "https://testnets.opensea.io/collection/exumbrae";
+const OPENSEA_LINK = "https://testnets.opensea.io/collection/exumbrae-v3";
 
 const CONTRACT_ADDRESS = "0x21F98862eb86f44604e1F8F67761E34901905216";
 
@@ -271,10 +272,10 @@ const App = () => {
                     renderNotConnectedContainer()
                   ) : minting === true ? (
                     <>
-                      <h1 className="mint-message">
+                    <Candle />  
+                    <h1 className="mint-message">
                         The spirits are listening to your invocation...
                       </h1>
-                      <Spinner />
                     </>
                   ) : (
                     <>
