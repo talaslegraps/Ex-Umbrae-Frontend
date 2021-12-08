@@ -13,10 +13,9 @@ import { ToggleSlider } from "react-toggle-slider";
 const Album = () => {
   const { userNftCollection } = useContext(MetadataContext);
   const { id } = useParams();
-  const [active, setActive] = useState(false);
+  const [deckActive, setDeckActive] = useState(false);
 
-  // if (!userNftCollection) return null;
-  console.log(userNftCollection);
+  // console.log(userNftCollection);
 
   return (
     <>
@@ -28,7 +27,7 @@ const Album = () => {
             barBackgroundColor="#452f6b"
             barBackgroundColorActive="#d9ac18"
             onToggle={() => {
-              setActive(!active);
+              setDeckActive(!deckActive);
             }}
           />
           <span>Deck View</span>
@@ -39,7 +38,7 @@ const Album = () => {
         </div>
       )}
       <Container fluid className="nft-cards-container">
-        {!active ? (
+        {!deckActive ? (
           <Row>
             {userNftCollection.assets &&
               userNftCollection.assets

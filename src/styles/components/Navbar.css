@@ -10,7 +10,7 @@
   justify-content: flex-end;
   align-self: center;
   margin-right: 1rem;
-  position: fixed;
+  position: absolute;
   right: -100%;
 }
 
@@ -24,12 +24,14 @@
   right: 0;
   transition: 500ms;
 }
+
 .nav-text {
   display: inline;
   list-style: none;
   font-size: 20px;
   margin: 20px;
 }
+
 .nav-text a {
   text-decoration: none;
   color: var(--accent-color);
