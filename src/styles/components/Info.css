@@ -47,13 +47,3 @@
   height: auto;
   margin-right: 0.5rem;
 }
-
-.logo-header {
-  background-color: var(--main-bg-color);
-  padding-left: 1rem;
-  display: flex;
-  height: 170px;
-  top: 0;
-  z-index: 1;
-  position: sticky;
-}
