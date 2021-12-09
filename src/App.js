@@ -11,9 +11,9 @@ import MyVerticallyCenteredModal from "./utils/utils";
 import Info from "./components/Info";
 import Mint from "./components/Mint";
 
-const OPENSEA_LINK = "https://testnets.opensea.io/collection/exumbrae-v3";
+const OPENSEA_LINK = "https://testnets.opensea.io/collection/exumbrae-v4";
 
-const CONTRACT_ADDRESS = "0x21F98862eb86f44604e1F8F67761E34901905216";
+const CONTRACT_ADDRESS = "0x4dA64a152dD7d55F1F9111F696def94f54878EC1";
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");

@@ -73,15 +73,14 @@ function Info() {
         <h1 className="info-font-face-magic">About NFTs</h1>
         <p className="info-text">
           A non-fungible token (NFT) is a unique and non-interchangeable unit of
-          data stored on a digital ledger (blockchain).[1] NFTs can be
-          associated with easily-reproducible items such as photos, videos, 3D
-          models, audio, and other types of digital files as unique items
-          (analogous to a certificate of authenticity). NFTs use blockchain
-          technology to provide a public proof of ownership. Copies of the
-          original file are not restricted to the owner of the NFT, and can be
-          copied and shared like any file. The lack of interchangeability
-          (fungibility) distinguishes NFTs from blockchain cryptocurrencies,
-          such as Bitcoin.
+          data stored on a digital ledger (blockchain). NFTs can be associated
+          with easily-reproducible items such as photos, videos, 3D models,
+          audio, and other types of digital files as unique items (analogous to
+          a certificate of authenticity). NFTs use blockchain technology to
+          provide a public proof of ownership. Copies of the original file are
+          not restricted to the owner of the NFT, and can be copied and shared
+          like any file. The lack of interchangeability (fungibility)
+          distinguishes NFTs from blockchain cryptocurrencies, such as Bitcoin.
         </p>
       </div>
       <div className="about-project-text section-text">
