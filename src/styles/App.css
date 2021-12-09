@@ -71,16 +71,14 @@
   border: solid var(--alternative-accent-color) 2px;
   align-self: center;
   margin-bottom: 10px;
-  /* background: -webkit-linear-gradient(
-    left,
-    var(--accent-color),
-    rgb(167, 0, 167),
-    var(--secondary-color)
-  );
-  background-size: 200% 200%;
-  animation: gradient-animation 4s ease infinite; */
   background-color: var(--secondary-color);
 }
+
+.cta-button:hover {
+  color: var(--alternative-accent-color);
+  border: solid var(--accent-color);
+}
+
 /* this might be redundant */
 .mint-count {
   color: white;
@@ -171,13 +169,14 @@
   position: sticky;
   top: 180px;
   z-index: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .back-to-album a {
   color: var(--alternative-accent-color);
   text-decoration: none;
-  display: flex;
-  justify-content: center;
+  width: fit-content;
 }
 
 .back-to-album a:hover {
