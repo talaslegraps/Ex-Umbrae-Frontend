@@ -1,2 +1,2 @@
-### Ex Umbrae - An NFT learning project
-## netlify deploy: https://ex-umbrae-project.netlify.app/
+# Ex Umbrae - An NFT learning project
+### netlify deploy: https://ex-umbrae-project.netlify.app/
